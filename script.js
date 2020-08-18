@@ -58,11 +58,11 @@ function lyricsSearch(artist, title) {
     fetch(`https://api.lyrics.ovh/v1/${artist}/${title}/`)
         .then(response => response.json())
         .then(data => showLyrics(data, title))
-        .catch(error => alert('data not found'))
 }
 
 function showLyrics(data, title) {
     if (data.lyrics == undefined) {
+        alert('Lyrics not found');
         document.querySelector('.single-lyrics').innerText =
 
             ".....................NO LYRICS AVAILABLE............";
