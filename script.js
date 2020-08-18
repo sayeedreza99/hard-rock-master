@@ -25,7 +25,6 @@ function doS(userInput) {
 function doSomething(data) {
 
     searchResult.innerHTML = " ";
-    searchResult.classList.add("search-result", "col-md-8", "mx-auto", "py-4")
     for (let i = 0; i < 8; i++) {
         const element = data.data[i];
         const title = element.album.title;
