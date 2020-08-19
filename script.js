@@ -1,5 +1,3 @@
-// const apiLink = "https://api.lyrics.ovh";
-
 const userInput = document.querySelector(".form-control");
 const serachButton = document.querySelector(".search-btn");
 const searchResult = document.getElementById('searchResult');
@@ -9,19 +7,18 @@ serachButton.addEventListener('click', function () {
         searchResult.innerText = "";
         alert('nothing to search')
     }
-    else if (userInput.value != "") {
-        doS(userInput);
-    }
     else {
-        searchResult.innerText = "";
+        doS(userInput);
     }
 })
 
 function doS(userInput) {
     fetch(`https://api.lyrics.ovh/suggest/ ${userInput.value}/`)
         .then(res => res.json())
-        .then(data =>
-            doSomething(data)
+        .then(data => {
+            doSomething(data);
+            data = data.slice(0, 10);
+        }
         )
 }
 
@@ -33,9 +30,6 @@ function doSomething(data) {
         const artist = element.artist.name;
         const image = element.artist.picture_small;
         const albumTitle = element.album.title;
-
-
-        // console.log(artist);
         const child = `<div class="single-result row align-items-center my-3 p-3">
         <div class="col-md-8">
             <h3 class="lyrics-name">${title}</h3>
@@ -69,8 +63,6 @@ function showLyrics(data, title) {
     } else {
         document.querySelector('.single-lyrics').innerHTML =
             `<h2 class="text-success mb-4">Title - ${title}</h2>
-            <pre class="lyric text-white">
-            ${data.lyrics}
-            </pre>`;
+            <pre class="text-white">${data.lyrics}</pre>`;
     }
 }
