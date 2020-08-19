@@ -1,10 +1,12 @@
 const userInput = document.querySelector(".form-control");
 const serachButton = document.querySelector(".search-btn");
-const searchResult = document.getElementById('searchResult');
+const searchResult = document.querySelector('#searchResult');
+const lyricsSection = document.querySelector('.single-lyrics');
 
 serachButton.addEventListener('click', function () {
     if (userInput.value == "") {
         searchResult.innerText = "";
+        lyricsSection.innerText = "";
         alert('nothing to search')
     }
     else {
@@ -57,11 +59,11 @@ function lyricsSearch(artist, title) {
 function showLyrics(data, title) {
     if (data.lyrics == undefined) {
         alert('Lyrics not found');
-        document.querySelector('.single-lyrics').innerText =
+        lyricsSection.innerText =
 
             ".....................NO LYRICS AVAILABLE............";
     } else {
-        document.querySelector('.single-lyrics').innerHTML =
+        lyricsSection.innerHTML =
             `<h2 class="text-success mb-4">Title - ${title}</h2>
             <pre class="text-white">${data.lyrics}</pre>`;
     }
